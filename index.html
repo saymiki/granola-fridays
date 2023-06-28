@@ -11,11 +11,12 @@
 
     <main>
         <section>
-            <button id="start-button">Start Quiz</button>
+            <button id="startbutton" onclick="setTime()">Start Quiz</button>
         </section>
 
-        <section>     
-            <h1 class="time" style="text-align:right;"></h1>
+        <section id="time" id="topRightFixed"> 
+            <h1>Time Left</h1>
+            <p id="timerDisplay">100</p>
         </section>
 
         <section id="quiz-container">
@@ -33,7 +34,7 @@
 
 
 
-    <script src="/Users/mikaelamontesclaros/bootcamp/homework/granola-fridays/granola-fridays/assets/script.js"></script>
+    <script src="assets/script.js"></script>
 </body>
 
 </html>
