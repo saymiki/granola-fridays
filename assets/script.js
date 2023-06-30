@@ -94,9 +94,9 @@ function questionRender() {
       input.name = "choice";
       choicesDiv.appendChild(input);
       choicesDiv.appendChild(label);
+      label.innerText = choice;
+      input.value = choice;
     }
-    label.innerText = choice;
-    input.value = choice;
   }
 }
 
