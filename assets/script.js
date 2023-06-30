@@ -86,17 +86,19 @@ function questionRender() {
 
   // populate question
   questionDiv.textContent = JSON.stringify(quizQuestions[qIndex].question);
+  // clear choicesDiv before populating with new choices
+  choicesDiv.innerHTML = "";
 
   // populate choices
   for (let choice of quizQuestions[qIndex].choices) {
-    // only append choices to parent at first render
-    // otherwise, just switch out the input and label text/value
-    if (qIndex === 0) {
-      choicesDiv.appendChild(input);
-      choicesDiv.appendChild(label);
-      label.innerText = choice;
-      input.value = choice;
-    }
+    let label = document.createElement("label");
+    label.innerText = choice;
+    let input = document.createElement("input");
+    input.type = "radio";
+    input.name = "choice";
+    input.value = choice;
+    choicesDiv.appendChild(input);
+    choicesDiv.appendChild(label);
   }
 }
 
