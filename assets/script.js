@@ -6,7 +6,7 @@ const startButton = document.querySelector("#startbutton");
 const submitButton = document.querySelector("#submit");
 
 function setTime() {
-  // Sets interval in variable
+  // Sets interval in variables
   if (!timerOn) {
     timerOn = true;
     // onclick start button will disappear
@@ -49,12 +49,11 @@ const quizQuestions = [
   },
 ];
 
-// Define the quiz settings
-const highScoresKey = "highScores";
-
 // Define the initial state of the quiz
 const currentQuestionIndex = 0;
-const score = 0;
+const scoreArea = document.getElementById("scoreArea");
+let score = 0;
+const scoreDiv = document.createElement("div");
 let qIndex = 0;
 const quizContainer = document.getElementById("quizContainer");
 const questionDiv = document.createElement("div");
@@ -72,6 +71,9 @@ function questionRender() {
     quizContainer.appendChild(questionDiv);
     quizContainer.appendChild(choicesDiv);
   }
+  // display score
+  scoreDiv.textContent = "Score: " + score;
+  quizContainer.appendChild(scoreDiv);
 
   // populate question
   questionDiv.textContent = JSON.stringify(quizQuestions[qIndex].question);
@@ -90,9 +92,18 @@ function questionRender() {
 }
 
 function submit() {
-  // if the input.value of the chosen answer === null (undefined?), throw a warning and return (to kill the rest of the function)
-  // if the input.value of the chosen answer !== quizQuestions[qIndex].correctAnswer, minus time
-  // else (the answer is correct) add points
+  if (
+    document.querySelector('input[name="choice"]:checked').value !==
+    quizQuestions[qIndex].correctAnswer
+  ) {
+    secondsLeft -= 10; // Subtract 10 seconds from the timer
+  } else if (
+    document.querySelector('input[name="choice"]:checked').value ===
+    quizQuestions[qIndex].correctAnswer
+  ) {
+    score += 20; //add points to score
+  }
+  console.log("yeethaw", score);
 
   qIndex++;
   questionRender();
