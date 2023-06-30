@@ -64,16 +64,21 @@ function questionRender() {
   if (qIndex >= quizQuestions.length) {
     questionDiv.textContent = "CONGRATS! YOU'VE FINISHED THE QUIZ!";
     submitButton.style.display = "none";
+    choicesDiv.style.display = "none";
+    quizQuestions.question.style.display = "none";
+    clearInterval(timerInterval);
+    return;
+    // display score
   }
 
   if (qIndex === 0) {
-    // Create a new div element for the question
+    // Create a new div element for the question and choice
     quizContainer.appendChild(questionDiv);
     quizContainer.appendChild(choicesDiv);
   }
   // display score
   scoreDiv.textContent = "Score: " + score;
-  quizContainer.appendChild(scoreDiv);
+  scoreArea.appendChild(scoreDiv);
 
   // populate question
   questionDiv.textContent = JSON.stringify(quizQuestions[qIndex].question);

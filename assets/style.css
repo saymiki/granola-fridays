@@ -23,6 +23,16 @@ body {
   font-size: 1.4em;
 }
 
+#scoreArea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #a87a35;
+  padding: 6px;
+  color: #fff;
+  font-size: 1.4em;
+}
+
 #quizContainer {
   visibility: visible;
   display: flex;
@@ -40,4 +50,6 @@ body {
 
 #submit {
   visibility: hidden;
+  display: flexbox;
+  align-self: self-end;
 }
