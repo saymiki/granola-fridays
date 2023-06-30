@@ -58,6 +58,10 @@ let qIndex = 0;
 const quizContainer = document.getElementById("quizContainer");
 const questionDiv = document.createElement("div");
 const choicesDiv = document.createElement("div");
+const label = document.createElement("label");
+const input = document.createElement("input");
+input.type = "radio";
+input.name = "choice";
 
 function questionRender() {
   // if the user finished the last question, this will trigger
@@ -88,15 +92,11 @@ function questionRender() {
     // only create the radio elements and append to parent at first render
     // otherwise, just switch out the input and label text/value
     if (qIndex === 0) {
-      let label = document.createElement("label");
-      let input = document.createElement("input");
-      input.type = "radio";
-      input.name = "choice";
       choicesDiv.appendChild(input);
       choicesDiv.appendChild(label);
-      label.innerText = choice;
-      input.value = choice;
     }
+    label.innerText = choice;
+    input.value = choice;
   }
 }
 
