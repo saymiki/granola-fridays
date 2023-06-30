@@ -89,7 +89,7 @@ function questionRender() {
 
   // populate choices
   for (let choice of quizQuestions[qIndex].choices) {
-    // only create the radio elements and append to parent at first render
+    // only append choices to parent at first render
     // otherwise, just switch out the input and label text/value
     if (qIndex === 0) {
       choicesDiv.appendChild(input);
