@@ -53,3 +53,8 @@ body {
   display: flexbox;
   align-self: self-end;
 }
+#tryAgainButton {
+  visibility: hidden;
+  display: flexbox;
+  align-self: self-end;
+}

@@ -1,6 +1,7 @@
 const timeEl = document.getElementById("time");
 var secondsLeft = 100;
 var timerOn = false;
+var timerInterval;
 
 const startButton = document.querySelector("#startbutton");
 const submitButton = document.querySelector("#submit");
@@ -10,9 +11,10 @@ function setTime() {
   if (!timerOn) {
     timerOn = true;
     // onclick start button will disappear
-    startButton.style.display = "none";
+    tryAgainButton.style.visibility = "hidden";
+    startButton.style.visibility = "hidden";
     submitButton.style.visibility = "visible";
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
       secondsLeft--;
       timeEl.textContent = secondsLeft;
       // preventDefault(event);
@@ -20,6 +22,12 @@ function setTime() {
       if (secondsLeft === 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
+      } else if (qIndex >= quizQuestions.length) {
+        {
+          clearInterval(timerInterval);
+          timeEl.textContent = "0"; // Set the timer to zero
+          // Handle end of the quiz
+        }
       }
     }, 1000);
     questionRender();
@@ -66,13 +74,15 @@ input.name = "choice";
 function questionRender() {
   // if the user finished the last question, this will trigger
   if (qIndex >= quizQuestions.length) {
-    questionDiv.textContent = "CONGRATS! YOU'VE FINISHED THE QUIZ!";
-    submitButton.style.display = "none";
-    choicesDiv.style.display = "none";
-    quizQuestions.question.style.display = "none";
-    clearInterval(timerInterval);
-    return;
+    questionDiv.textContent =
+      "CONGRATS! YOU'VE FINISHED THE QUIZ! " + "Your final score is " + score;
     // display score
+    submitButton.style.visibility = "hidden";
+    choicesDiv.innerHTML = "";
+    // scoreDiv.innerHTML = "0";
+    scoreDiv.style.display = "hidden";
+    tryAgainButton.style.visibility = "visible";
+    return;
   }
 
   if (qIndex === 0) {
@@ -120,6 +130,28 @@ function submit() {
   questionRender();
   console.log(qIndex);
 }
+
+const tryAgainButton = document.getElementById("tryAgainButton");
+
+// Add event listener to the "Try Again" button
+tryAgainButton.addEventListener("click", function () {
+  // Reset the necessary variables and elements to restart the quiz
+  qIndex = 0;
+  score = 0;
+  secondsLeft = 100;
+  timerOn = false;
+  timeEl.textContent = secondsLeft;
+  // choicesDiv.style.display = "visible";
+  scoreDiv.style.display = "visible";
+  scoreDiv.textContent = "Score: " + score;
+  // quizQuestions.question.style.display = "visible";
+
+  // Hide the "Try Again" button
+  tryAgainButton.style.visibility = "visible";
+
+  // Call the function to render the first questions
+  setTime();
+});
 
 // Psuedocode
 // create a cycle for the arrays
