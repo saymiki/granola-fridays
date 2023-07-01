@@ -14,6 +14,7 @@ function setTime() {
     tryAgainButton.style.visibility = "hidden";
     startButton.style.visibility = "hidden";
     submitButton.style.visibility = "visible";
+
     timerInterval = setInterval(function () {
       secondsLeft--;
       timeEl.textContent = secondsLeft;
@@ -64,7 +65,9 @@ let score = 0;
 const scoreDiv = document.createElement("div");
 let qIndex = 0;
 const quizContainer = document.getElementById("quizContainer");
-const questionDiv = document.createElement("div");
+const highscoresContainer = document.getElementById("highscoresContainer");
+const highscoresDiv = document.createElement("div");
+const questionDiv = document.createElement("h1");
 const choicesDiv = document.createElement("div");
 const label = document.createElement("label");
 const input = document.createElement("input");
@@ -82,6 +85,8 @@ function questionRender() {
     // scoreDiv.innerHTML = "0";
     scoreDiv.style.display = "hidden";
     tryAgainButton.style.visibility = "visible";
+    saveButton.style.visibility = "visible";
+    nameInput.style.visibility = "visible";
     return;
   }
 
@@ -144,6 +149,8 @@ tryAgainButton.addEventListener("click", function () {
   // choicesDiv.style.display = "visible";
   scoreDiv.style.display = "visible";
   scoreDiv.textContent = "Score: " + score;
+  saveButton.style.visibility = "hidden";
+  nameInput.style.visibility = "hidden";
   // quizQuestions.question.style.display = "visible";
 
   // Hide the "Try Again" button
@@ -153,6 +160,19 @@ tryAgainButton.addEventListener("click", function () {
   setTime();
 });
 
+const saveButton = document.getElementById("saveButton");
+const nameInput = document.getElementById("nameInput");
+
+saveButton.addEventListener("click", function () {
+  let name = nameInput.value;
+  // Do something with the name, such as storing it in localStorage
+  // console.log("Name: " + name);
+  localStorage.setItem("name", name);
+  const storedName = localStorage.getItem("name");
+  // console.log("Stored Name: " + storedName);
+  highscoresContainer.appendChild(highscoresDiv);
+  highscoresDiv.innerHTML = storedName;
+});
 // Psuedocode
 // create a cycle for the arrays
 // assign css to arrays so they display properly

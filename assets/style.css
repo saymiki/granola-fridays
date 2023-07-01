@@ -33,6 +33,11 @@ body {
   font-size: 1.4em;
 }
 
+#highscoresContainer {
+  visibility: visible;
+  display: flex;
+}
+
 #quizContainer {
   visibility: visible;
   display: flex;
@@ -48,13 +53,28 @@ body {
   border: transparent
 }
 
+#nameInput {
+  visibility: hidden;
+  display: flexbox;
+  align-self: center;
+}
+#saveButton {
+  visibility: hidden;
+  display: flexbox;
+  justify-content: space-evenly;
+}
+#startButton {
+  visibility: hidden;
+  display: flexbox;
+  justify-content: space-evenly;
+}
 #submit {
   visibility: hidden;
   display: flexbox;
-  align-self: self-end;
+  justify-content: space-evenly, end;
 }
 #tryAgainButton {
   visibility: hidden;
   display: flexbox;
-  align-self: self-end;
+  justify-content: space-evenly;
 }
